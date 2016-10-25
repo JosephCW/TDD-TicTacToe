@@ -29,7 +29,7 @@ public class TicTacToeTest {
 	}
 	
 	@Test
-	public void playedPieceAlreadyExistsAtLocationThenRuntimeException() {
+	public void slotOccupiedAtLocationThenRuntimeException() {
 		ticTacToe.play(1, 3);
 		e.expect(RuntimeException.class);
 		ticTacToe.play(1, 3);
