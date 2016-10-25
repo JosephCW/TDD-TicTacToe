@@ -27,4 +27,11 @@ public class TicTacToeTest {
 		e.expect(RuntimeException.class);
 		ticTacToe.play(1, 4);
 	}
+	
+	@Test
+	public void playedPieceAlreadyExistsAtLocationThenRuntimeException() {
+		ticTacToe.play(1, 3);
+		e.expect(RuntimeException.class);
+		ticTacToe.play(1, 3);
+	}
 }
