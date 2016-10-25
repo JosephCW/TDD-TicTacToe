@@ -100,4 +100,18 @@ public class TicTacToeTest {
 		String status = ticTacToe.play(3, 1);
 		assertEquals("X is the winner!", status);
 	}
+	
+	@Test
+	public void whenAllSpotsFilledThenTie() {
+		ticTacToe.play(1, 1); //X
+		ticTacToe.play(1, 2); //Y
+		ticTacToe.play(1, 3); //X
+		ticTacToe.play(2, 1); //Y
+		ticTacToe.play(2, 2); //X
+		ticTacToe.play(3, 1); //O
+		ticTacToe.play(2, 3); //X
+		ticTacToe.play(3, 3); //O
+		String status = ticTacToe.play(3, 2); //X
+		assertEquals("Game Tied!", status);
+	}
 }

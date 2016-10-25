@@ -10,15 +10,28 @@ public class TicTacToe {
 	private final int SIZE = 3;
 	
 	public String play(int x, int y) {
-		// validate player played within the board
 		validInput(x);
 		validInput(y);
 		lastPlayer = nextPlayer();
 		setPiece(x, y, lastPlayer);
 		if (isWin()) {
 			return lastPlayer + " is the winner!";
+		} else if (isDraw()) {
+			return "Game Tied!";
+		} else {
+			return "No Winner";
 		}
-		return "No Winner";
+	}
+
+	private boolean isDraw() {
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				if(board[i][j] == 'e') {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	private boolean isWin() {
