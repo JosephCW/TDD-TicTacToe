@@ -6,12 +6,14 @@ public class TicTacToe {
 			{'e', 'e', 'e'},
 			{'e', 'e', 'e'}
 	};
+	private String lastPlayer = "O";
 	
 	public void play(int x, int y) {
 		// validate player played within the board
 		validInput(x);
 		validInput(y);
 		setPiece(x, y);
+		lastPlayer = nextPlayer();
 	}
 
 	private void validInput(int axis) {
@@ -26,5 +28,12 @@ public class TicTacToe {
 		} else {
 			board[x-1][y-1] = 'X';
 		}
+	}
+
+	public String nextPlayer() {
+		if(lastPlayer.equals("O")) {
+			return "X";
+		}
+		return "O";
 	}
 }

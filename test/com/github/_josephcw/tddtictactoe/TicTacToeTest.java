@@ -1,5 +1,7 @@
 package com.github._josephcw.tddtictactoe;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,5 +35,16 @@ public class TicTacToeTest {
 		ticTacToe.play(1, 3);
 		e.expect(RuntimeException.class);
 		ticTacToe.play(1, 3);
+	}
+	
+	@Test
+	public void givenFirstPlayerOnPlaySetX() {
+		assertEquals("X", ticTacToe.nextPlayer());
+	}
+	
+	@Test
+	public void secondTurnNextPlayerIsO() {
+		ticTacToe.play(1, 1);
+		assertEquals("O", ticTacToe.nextPlayer());
 	}
 }
