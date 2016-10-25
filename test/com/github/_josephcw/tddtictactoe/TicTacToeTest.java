@@ -39,12 +39,45 @@ public class TicTacToeTest {
 	
 	@Test
 	public void givenFirstPlayerOnPlaySetX() {
-		assertEquals("X", ticTacToe.nextPlayer());
+		assertEquals('X', ticTacToe.nextPlayer());
 	}
 	
 	@Test
 	public void secondTurnNextPlayerIsO() {
 		ticTacToe.play(1, 1);
-		assertEquals("O", ticTacToe.nextPlayer());
+		assertEquals('O', ticTacToe.nextPlayer());
+	}
+	
+	@Test
+	public void thirdTurnNextPlayerIsX() {
+		ticTacToe.play(1, 1);
+		ticTacToe.play(1, 2);
+		assertEquals('X', ticTacToe.nextPlayer());
+	}
+	
+	@Test
+	public void oneTurnNoWinner() {
+		String status = ticTacToe.play(1, 1);
+		assertEquals("No Winner", status);
+	}
+	
+	@Test
+	public void horizontalWin() {
+		ticTacToe.play(1, 1); // X
+		ticTacToe.play(2, 2); // O
+		ticTacToe.play(2, 1); // X
+		ticTacToe.play(2, 3); // O
+		String status = ticTacToe.play(3, 1);
+		assertEquals("X is the winner!", status);
+	}
+	
+	@Test
+	public void verticalWin() {
+		ticTacToe.play(1, 1);
+		ticTacToe.play(2, 1);
+		ticTacToe.play(1, 2);
+		ticTacToe.play(2, 2);
+		String status = ticTacToe.play(1, 3);
+		assertEquals("X is the winner!", status);
 	}
 }
