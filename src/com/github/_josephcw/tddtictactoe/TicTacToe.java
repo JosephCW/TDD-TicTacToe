@@ -23,7 +23,11 @@ public class TicTacToe {
 
 	private boolean isWin() {
 		int playerTotal = lastPlayer * 3; // XXX or OOO
+		char diag1 = '\0';
+		char diag2 = '\0';
 		for (int index = 0; index < SIZE; index++) {
+			diag1 += board[index][index];
+			diag2 += board[index][(SIZE - 1) - index];
 			if(board[0][index] + board[1][index] + board[2][index] == playerTotal) {
 				// Horizontal Line
 				return true;
@@ -32,17 +36,20 @@ public class TicTacToe {
 				return true;
 			}
 		}
+		if (diag1 == playerTotal || diag2 == playerTotal) { 
+			return true;
+		}
 		return false;
 	}
 
 	private void validInput(int axis) {
-		if(axis < 1 || axis > SIZE) {
+		if (axis < 1 || axis > SIZE) {
 			throw new RuntimeException("Input is outside of the board");
 		}
 	}
 	
 	private void setPiece(int x, int y, char lastPlayer) {
-		if(board[x - 1][y - 1] != 'e') {
+		if (board[x - 1][y - 1] != 'e') {
 			throw new RuntimeException("Slot already occupied");
 		} else {
 			board[x - 1][y - 1] = lastPlayer;
@@ -50,7 +57,7 @@ public class TicTacToe {
 	}
 
 	public char nextPlayer() {
-		if(lastPlayer == 'O') {
+		if (lastPlayer == 'O') {
 			return 'X';
 		}
 		return 'O';

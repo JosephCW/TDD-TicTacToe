@@ -73,11 +73,31 @@ public class TicTacToeTest {
 	
 	@Test
 	public void verticalWin() {
-		ticTacToe.play(1, 1);
-		ticTacToe.play(2, 1);
-		ticTacToe.play(1, 2);
-		ticTacToe.play(2, 2);
+		ticTacToe.play(1, 1); // X
+		ticTacToe.play(2, 1); // O
+		ticTacToe.play(1, 2); // X
+		ticTacToe.play(2, 2); // O
 		String status = ticTacToe.play(1, 3);
+		assertEquals("X is the winner!", status);
+	}
+	
+	@Test
+	public void whenPlayTopBottomDiagonalLineThenWin() {
+		ticTacToe.play(1, 1);
+		ticTacToe.play(1, 3);
+		ticTacToe.play(2, 2);
+		ticTacToe.play(2, 1);
+		String status = ticTacToe.play(3, 3);
+		assertEquals("X is the winner!", status);
+	}
+	
+	@Test
+	public void whenPlayBottomTopDiagonalLineThenWin() {
+		ticTacToe.play(1, 3);
+		ticTacToe.play(1, 1);
+		ticTacToe.play(2, 2);
+		ticTacToe.play(1, 2);
+		String status = ticTacToe.play(3, 1);
 		assertEquals("X is the winner!", status);
 	}
 }
